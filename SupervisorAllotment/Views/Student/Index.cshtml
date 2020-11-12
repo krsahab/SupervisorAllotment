@@ -1,0 +1,85 @@
+﻿@model IEnumerable<SupervisorAllotment.Models.Student>
+
+@{
+    ViewBag.Title = "Students";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var supervisors = ViewData["Teachers"] as IList<SupervisorAllotment.Models.Supervisor>;
+}
+
+<h2>All Students</h2>
+@if (TempData.Count > 0 && TempData.ContainsKey("message"))
+{
+    <p class="text-success">@TempData["message"].ToString()</p>
+    TempData.Clear();
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GateRank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GateScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BtechScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supervisor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceFilled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceAlloted)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GateRank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GateScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BtechScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => supervisors.FirstOrDefault(x => x.ID == item.Supervisor).Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceFilled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceAlloted)
+            </td>
+            <td>
+                @Html.ActionLink("Preference", "SeePreference", new { id = item.CollegeId, isAdmin = true }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CollegeId })
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Allot Supervisor", "AllotSupervisor", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Clear Allotment", "ClearAllotment", null, new { @class = "btn btn-primary" })

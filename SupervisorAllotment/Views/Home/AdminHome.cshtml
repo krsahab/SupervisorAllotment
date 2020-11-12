@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="jumbotron col-lg-12">
+    <h2>Admin Home</h2>
+    <h4>Welcome to Supervisor Allotment Portal</h4>
+    @Html.ActionLink("Students", "Index", "Student", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Supervisors", "Index", "Supervisor", null, new { @class = "btn btn-primary" })
+</div>

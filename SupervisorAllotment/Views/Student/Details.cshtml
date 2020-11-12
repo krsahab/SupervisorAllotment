@@ -1,0 +1,99 @@
+﻿@model SupervisorAllotment.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GateRank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GateRank)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GateScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GateScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BtechScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BtechScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supervisor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supervisor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceFilled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceFilled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceAlloted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceAlloted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CollegeId }, new { @class="btn btn-primary" })
+    @Html.ActionLink("View/Update Preferences", "SeePreference", new { id = Model.CollegeId, isAdmin = false }, new { @class = "btn btn-primary" })
+</p>

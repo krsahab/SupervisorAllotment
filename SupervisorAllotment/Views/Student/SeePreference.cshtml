@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SupervisorAllotment.Models.Supervisor>
+
+@{
+    ViewBag.Title = "SeePreference";
+    Layout = ViewData["layout"] as string;
+    var student = ViewData["Student"] as SupervisorAllotment.Models.Student;
+    var counter = 0;
+}
+
+<h2>Preferences</h2>
+<p>@student.Name</p>
+<p>@student.CollegeId</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Preference")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Label((++counter).ToString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+        </tr>
+    }
+</table>
+@if (!Layout.Contains("Admin"))
+{
+    @Html.ActionLink("Update", "UpdatePreference", new { id = student.CollegeId }, new { @class = "btn btn-primary" })
+}

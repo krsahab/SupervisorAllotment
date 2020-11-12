@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SupervisorAllotment.Models.Supervisor>
+
+@{
+    ViewBag.Title = "Supervisors";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var students = ViewData["Students"] as IList<SupervisorAllotment.Models.Student>;
+}
+
+<h2>All Supervisors</h2>
+
+<p>
+    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentsAlloted)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @foreach (var st in students.Where(x => x.Supervisor == item.ID))
+                {
+                <ul style="list-style-type:none; padding: 0">
+                    <li>@st.Name</li>
+                </ul>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
